@@ -58,3 +58,30 @@ h5 {
     letter-spacing: 4.75px;
     text-transform: uppercase;
 }
+
+/* Subheadings */
+
+@mixin subheading-1 {
+    font-size: 1.75rem;
+    font-family: 'Bellefair', serif;
+    color: $color-white;
+    text-transform: uppercase;
+    }
+
+@mixin subheading-2 {
+    font-size: 0.875rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    color: $color-white;
+    letter-spacing: 2.35px;
+    text-transform: uppercase;
+    }
+
+/* Nav Text */
+
+@mixin nav-text {
+    font-size: 1rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    color: $color-white;
+    letter-spacing: 2.7px;
+    text-transform: uppercase;
+    }
