@@ -1,6 +1,7 @@
 <template>
   <TheLayout>
-    <TheHeader />
+    <HeaderMobile v-if="width < '768'" />
+    <HeaderDesktop v-if="width >= '768'" />
     <WelcomeMessage />
     <ExploreButton />
   </TheLayout>
@@ -8,17 +9,27 @@
 
 <script>
 // @ is an alias to /src
+import { useWindowSize } from "vue-window-size";
 import TheLayout from "@/layouts/TheLayout";
 import WelcomeMessage from "@/views/Home/WelcomeMessage";
 import ExploreButton from "@/views/Home/ExploreButton";
-import TheHeader from "@/components/TheHeader";
+import HeaderMobile from "@/components/HeaderMobile";
+import HeaderDesktop from "@/components/HeaderDesktop";
 export default {
   name: "Home",
   components: {
-    TheHeader,
+    HeaderDesktop,
+    HeaderMobile,
     ExploreButton,
     WelcomeMessage,
     TheLayout
-  }
+  },
+  setup() {
+    const { width, height} = useWindowSize();
+    return {
+      width,
+      height,
+    };
+  },
 };
 </script>
