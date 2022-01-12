@@ -44,7 +44,6 @@
       </li>
     </ul>
   </div>
-
 </template>
 
 <script>
@@ -78,6 +77,7 @@ export default defineComponent({
   padding: 2rem;
   backdrop-filter: blur(50px) brightness(1.1) contrast(0.9);
   transition: transform 0.15s ease-in;
+  z-index: 1;
 
   &.closed {
     transform: translateX(100%);
@@ -118,11 +118,13 @@ export default defineComponent({
 }
 
 .header-layout {
+  position: absolute;
   width: 100%;
   display: flex;
   padding: 1.5rem 0;
   align-items: center;
   justify-content: space-between;
+  z-index: 1;
 
   @media ($breakpoint-tablet) {
     position: absolute;

@@ -1,7 +1,5 @@
 <template>
-  <TheLayout>
-    <HeaderMobile v-if="width < '768'" />
-    <HeaderDesktop v-if="width >= '768'" />
+  <TheLayout class="home-layout">
     <WelcomeMessage />
     <ExploreButton />
   </TheLayout>
@@ -13,19 +11,16 @@ import { useWindowSize } from "vue-window-size";
 import TheLayout from "@/layouts/TheLayout";
 import WelcomeMessage from "@/views/Home/WelcomeMessage";
 import ExploreButton from "@/views/Home/ExploreButton";
-import HeaderMobile from "@/components/HeaderMobile";
-import HeaderDesktop from "@/components/HeaderDesktop";
+
 export default {
   name: "Home",
   components: {
-    HeaderDesktop,
-    HeaderMobile,
     ExploreButton,
     WelcomeMessage,
-    TheLayout
+    TheLayout,
   },
   setup() {
-    const { width, height} = useWindowSize();
+    const { width, height } = useWindowSize();
     return {
       width,
       height,
@@ -33,3 +28,20 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+@use "../../assets/globals.scss" as *;
+
+.home-layout {
+  background-image: url("../../assets/home/background-home-mobile.jpg");
+  background-size: cover;
+
+  @media ($breakpoint-tablet) {
+    background-image: url("../../assets/home/background-home-tablet.jpg");
+  }
+
+  @media ($breakpoint-desktop) {
+    background-image: url("../../assets/home/background-home-desktop.jpg");
+    padding: 0 10.3rem;
+  }
+}
+</style>

@@ -1,8 +1,8 @@
 <template>
   <div class="button-layout">
-    <div class="explore-button">
+    <button class="explore-button">
       <div class="explore-button--text">Explore</div>
-    </div>
+    </button>
   </div>
 </template>
 
@@ -37,14 +37,14 @@ export default defineComponent({
     transition: outline 0.2s ease-in;
 
     &:hover {
-      outline: 1rem solid $color-dark-grey
+      outline: 1rem solid $color-dark-grey;
     }
 
     @media ($breakpoint-desktop) {
       width: 10rem;
 
       &:hover {
-        outline: 2.5rem solid $color-dark-grey
+        outline: 2.5rem solid $color-dark-grey;
       }
     }
 
@@ -57,7 +57,6 @@ export default defineComponent({
         font-size: 1.5rem;
       }
     }
-
   }
 }
 </style>
