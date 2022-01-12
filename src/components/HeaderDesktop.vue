@@ -91,8 +91,8 @@ export default defineComponent({
       .design-line {
         position: relative;
         top: 2.5rem;
-        right: 60%;
-        width: 400px;
+        right: 45%;
+        width: 350px;
         margin-left: 4rem;
         height: 1px;
         background-color: $color-dark-grey;
