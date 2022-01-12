@@ -117,6 +117,10 @@ export default defineComponent({
         &.active {
           border-bottom: 0.2rem inset $color-white;
         }
+
+        &:hover {
+          border-bottom: 0.2rem inset rgba(255, 255, 255, 0.5);
+        }
       }
 
       .list-number {
