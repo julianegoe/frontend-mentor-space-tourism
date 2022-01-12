@@ -125,12 +125,14 @@ export default defineComponent({
 
       .list-number {
         font-weight: bolder;
+        letter-spacing: 0.2rem;
         padding-right: 1rem;
         text-align: right;
       }
 
       .list-text {
         text-align: left;
+        letter-spacing: 0.2rem;
         text-transform: uppercase;
       }
     }
