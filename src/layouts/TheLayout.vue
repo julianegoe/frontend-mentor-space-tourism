@@ -21,18 +21,18 @@ export default defineComponent({
   left: 0;
   bottom: 0;
   right: 0;
-  padding: 0 1.5rem;
+  padding: 8rem 1.5rem 0 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 
   @media ($breakpoint-tablet) {
-    padding: 0 9rem;
+    padding: 12rem 9rem 0 9rem;
   }
 
   @media ($breakpoint-desktop) {
-    padding: 0 10.3rem;
+    padding: 0 8rem;
     display: flex;
     flex-direction: row;
     align-items: flex-end;

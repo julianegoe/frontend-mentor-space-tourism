@@ -28,17 +28,18 @@
       </svg>
     </div>
     <ul>
-      <li>
-        <span class="list-number">00</span><span class="list-text">Home</span>
+      <li @click="goHome">
+        <span class="list-number">00</span>
+        <span class="list-text">Home</span>
       </li>
-      <li>
+      <li @click="goTo('Destinations')">
         <span class="list-number">01</span
         ><span class="list-text">Destinations</span>
       </li>
-      <li>
+      <li @click="goTo('Crew')">
         <span class="list-number">02</span><span class="list-text">Crew</span>
       </li>
-      <li>
+      <li @click="goTo('Technology')">
         <span class="list-number">03</span
         ><span class="list-text">Technology</span>
       </li>
@@ -48,11 +49,40 @@
 
 <script>
 import { defineComponent, ref } from "vue";
+import { useRouter, useRoute } from "vue-router";
 
 export default defineComponent({
   name: "HeaderMobile",
   setup() {
     const closed = ref(true);
+    const activeItem = ref("");
+    const router = useRouter();
+    const route = useRoute();
+    const currentRoute = router.currentRoute;
+
+    const goHome = () => {
+      activeItem.value = "Home";
+      router.push({
+        name: "Home",
+      });
+      closed.value = true;
+    };
+
+    const goTo = (destination) => {
+      activeItem.value = destination;
+      console.log(router.currentRoute);
+      if (currentRoute.value.name !== "Home") {
+        router.push({
+          name: destination,
+          params: { planet: route.params.planet },
+        });
+      }
+      router.push({
+        name: destination,
+        params: { planet: "moon" },
+      });
+      closed.value = true;
+    };
 
     const toggleMenu = () => {
       closed.value = !closed.value;
@@ -60,6 +90,9 @@ export default defineComponent({
     return {
       closed,
       toggleMenu,
+      activeItem,
+      goTo,
+      goHome,
     };
   },
 });
@@ -121,7 +154,7 @@ export default defineComponent({
   position: absolute;
   width: 100%;
   display: flex;
-  padding: 1.5rem 0;
+  padding: 1.5rem;
   align-items: center;
   justify-content: space-between;
   z-index: 1;

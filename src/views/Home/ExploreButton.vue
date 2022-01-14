@@ -21,7 +21,7 @@ export default defineComponent({
   padding-bottom: 2rem;
 
   @media ($breakpoint-desktop) {
-    padding-bottom: 4rem;
+    padding-bottom: 6rem;
   }
 
   .explore-button {
@@ -41,10 +41,10 @@ export default defineComponent({
     }
 
     @media ($breakpoint-desktop) {
-      width: 10rem;
+      width: 12rem;
 
       &:hover {
-        outline: 2.5rem solid $color-dark-grey;
+        outline: 4rem solid rgba(255, 255, 255, 0.1);
       }
     }
 

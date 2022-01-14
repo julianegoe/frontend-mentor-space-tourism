@@ -18,16 +18,19 @@ export default defineComponent({
 @use "../assets/globals.scss" as *;
 
 .destination-layout {
-  background-image: url("../assets/destination/background-destination-mobile.jpg");
+  background: $color-black
+    url("../assets/destination/background-destination-mobile.jpg");
   background-size: cover;
+  padding-top: 4rem;
 
   @media ($breakpoint-tablet) {
-    background-image: url("../assets/destination/background-destination-tablet.jpg");
+    background: $color-black
+      url("../assets/destination/background-destination-tablet.jpg");
   }
 
   @media ($breakpoint-desktop) {
-    background-image: url("../assets/destination/background-destination-desktop.jpg");
-    padding: 0 10.3rem;
+    background: $color-black
+      url("../assets/destination/background-destination-desktop.jpg");
   }
 }
 </style>

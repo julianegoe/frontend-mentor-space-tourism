@@ -18,15 +18,18 @@ export default defineComponent({
 @use "../assets/globals.scss" as *;
 
 .technology-layout {
-  background-image: url("../assets/technology/background-technology-mobile.jpg");
+  background: $color-black
+    url("../assets/technology/background-technology-mobile.jpg");
   background-size: cover;
 
   @media ($breakpoint-tablet) {
-    background-image: url("../assets/technology/background-technology-tablet.jpg");
+    background: $color-black
+      url("../assets/technology/background-technology-tablet.jpg");
   }
 
   @media ($breakpoint-desktop) {
-    background-image: url("../assets/technology/background-technology-desktop.jpg");
+    background: $color-black
+      url("../assets/technology/background-technology-desktop.jpg");
     padding: 0 10.3rem;
   }
 }

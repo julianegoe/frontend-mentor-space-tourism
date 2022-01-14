@@ -18,15 +18,15 @@ export default defineComponent({
 @use "../assets/globals.scss" as *;
 
 .crew-layout {
-  background-image: url("../assets/crew/background-crew-mobile.jpg");
+  background: $color-black url("../assets/crew/background-crew-mobile.jpg");
   background-size: cover;
 
   @media ($breakpoint-tablet) {
-    background-image: url("../assets/crew/background-crew-tablet.jpg");
+    background: $color-black url("../assets/crew/background-crew-tablet.jpg");
   }
 
   @media ($breakpoint-desktop) {
-    background-image: url("../assets/crew/background-crew-desktop.jpg");
+    background: $color-black url("../assets/crew/background-crew-desktop.jpg");
     padding: 0 10.3rem;
   }
 }

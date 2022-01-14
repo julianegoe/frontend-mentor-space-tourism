@@ -14,7 +14,7 @@
     <nav class="nav">
       <div class="design-line"></div>
       <ul>
-        <li @click="goTo('Home')" :class="{ active: activeItem === 'Home' }">
+        <li @click="goHome" :class="{ active: activeItem === 'Home' }">
           <span class="list-number">00</span>
           <span class="list-text">Home</span>
         </li>
@@ -44,21 +44,44 @@
 
 <script>
 import { defineComponent, ref } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 
 export default defineComponent({
   name: "HeaderDesktop",
   setup() {
     const activeItem = ref("");
     const router = useRouter();
+    const route = useRoute();
+    const currentRoute = router.currentRoute;
+
+    const goHome = () => {
+      activeItem.value = "Home";
+      router.push({
+        name: "Home",
+      });
+      closed.value = true;
+    };
 
     const goTo = (destination) => {
       activeItem.value = destination;
-      router.push({ name: destination, params: { planet: "moon" } });
+      console.log(router.currentRoute);
+      if (currentRoute.value.name !== "Home") {
+        router.push({
+          name: destination,
+          params: { planet: route.params.planet },
+        });
+      }
+      router.push({
+        name: destination,
+        params: { planet: "moon" },
+      });
+      closed.value = true;
     };
+
     return {
       activeItem,
       goTo,
+      goHome,
     };
   },
 });
@@ -106,7 +129,15 @@ export default defineComponent({
       list-style: none;
       font-family: "Barlow Condensed", sans-serif;
       font-size: 1rem;
-      padding: 2rem 7rem;
+      padding: 2rem 3rem;
+
+      li:last-child {
+        margin-right: 0;
+      }
+
+      @media ($breakpoint-desktop) {
+        padding: 2rem 7rem;
+      }
 
       li {
         display: inline;
@@ -122,12 +153,13 @@ export default defineComponent({
           border-bottom: 0.2rem inset rgba(255, 255, 255, 0.5);
         }
       }
-
-      .list-number {
-        font-weight: bolder;
-        letter-spacing: 0.2rem;
-        padding-right: 1rem;
-        text-align: right;
+      @media ($breakpoint-desktop) {
+        .list-number {
+          font-weight: bolder;
+          letter-spacing: 0.2rem;
+          padding-right: 1rem;
+          text-align: right;
+        }
       }
 
       .list-text {

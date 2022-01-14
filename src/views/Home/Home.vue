@@ -32,16 +32,16 @@ export default {
 @use "../../assets/globals.scss" as *;
 
 .home-layout {
-  background-image: url("../../assets/home/background-home-mobile.jpg");
+  background: $color-black url("../../assets/home/background-home-mobile.jpg");
   background-size: cover;
 
   @media ($breakpoint-tablet) {
-    background-image: url("../../assets/home/background-home-tablet.jpg");
+    background: $color-black url("../../assets/home/background-home-tablet.jpg");
   }
 
   @media ($breakpoint-desktop) {
-    background-image: url("../../assets/home/background-home-desktop.jpg");
-    padding: 0 10.3rem;
+    background: $color-black
+      url("../../assets/home/background-home-desktop.jpg");
   }
 }
 </style>
