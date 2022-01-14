@@ -32,7 +32,7 @@ export default defineComponent({
   }
 
   @media ($breakpoint-desktop) {
-    padding: 0 8rem;
+    padding: 10rem 8rem 0 8rem;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
