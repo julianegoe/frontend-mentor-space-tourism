@@ -29,7 +29,7 @@ export default defineComponent({
     justify-content: center;
     align-items: center;
     aspect-ratio: 1;
-    width: 6rem;
+    width: 8rem;
     border-radius: 999px;
     background-color: $color-white;
     cursor: pointer;
@@ -37,7 +37,7 @@ export default defineComponent({
     transition: outline 0.2s ease-in;
 
     &:hover {
-      outline: 1rem solid $color-dark-grey;
+      outline: 1rem solid rgba(255, 255, 255, 0.1);
     }
 
     @media ($breakpoint-desktop) {

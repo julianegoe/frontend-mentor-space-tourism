@@ -3,36 +3,23 @@
     <h5><span class="list-number">00</span>Pick your destination</h5>
     <img
       class="planet-image"
-      src="../../assets/destination/image-moon.png"
+      :src="require(`../../assets/destination/image-${name.toLowerCase()}.png`)"
       alt="planet"
     />
   </div>
 </template>
-
 <script>
-import { ref, computed } from "vue";
-import data from "@/assets/data.json";
-import { useRouter } from "vue-router";
-
 export default {
-  setup() {
-    const oject = JSON.parse(JSON.stringify(data));
-    const planetInfo = ref(oject);
-    const router = useRouter();
-    const currentRoute = router.currentRoute;
-    const currentIndex = ref(0);
-    const imagePath = computed(() => {
-      return `../../assets/destination/image-${currentRoute.value.params.planet}.png`;
-    });
-    console.log(imagePath.value);
-    return {
-      planetInfo,
-      currentRoute,
-      currentIndex,
-      imagePath,
-    };
-  },
+  name: "HeroSection",
 };
+</script>
+
+<script setup>
+import { defineProps } from "vue";
+defineProps({
+  imagePath: String,
+  name: String,
+});
 </script>
 
 <style lang="scss" scoped>
@@ -58,8 +45,16 @@ export default {
   .planet-image {
     padding-top: 2rem;
     aspect-ratio: 1;
-    max-width: 25rem;
+    width: 15rem;
     object-fit: contain;
+
+    @media ($breakpoint-tablet) {
+      width: 18.75rem;
+    }
+
+    @media ($breakpoint-desktop) {
+      width: 25rem;
+    }
   }
 }
 </style>

@@ -60,9 +60,17 @@ h1 {
 
 h2 {
     all: unset;
-    font-size: 6.25rem;
+    font-size: 3.5rem;
     font-family: 'Bellefair', serif;
     color: $color-white;
+
+    @media ($breakpoint-tablet) {
+        font-size: 5rem;
+    }
+
+    @media ($breakpoint-desktop) {
+        font-size: 6.25rem;
+    }
 }
 
 h3 {
@@ -97,11 +105,12 @@ h5 {
 p {
     color: $color-light-blue;
     font-family: 'Barlow', sans-serif;
-    line-height: 2rem;
-    font-size: 0.93rem;
+    line-height: 1.5rem;
+    font-size: 0.9rem;
 
     @media ($breakpoint-tablet) {
         font-size: 1.125rem;
+        line-height: 2rem;
     }
 
     @media ($breakpoint-desktop) {
@@ -121,7 +130,7 @@ p {
 @mixin subheading-2 {
     font-size: 0.875rem;
     font-family: 'Barlow Condensed', sans-serif;
-    color: $color-white;
+    color: $color-light-blue;
     letter-spacing: 2.35px;
     text-transform: uppercase;
     }

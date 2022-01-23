@@ -1,30 +1,23 @@
 <template>
   <div class="planet-info-wrapper">
     <h2 class="planet-name">
-      {{ planetInfo.destinations[currentIndex].name }}
+      {{ name }}
     </h2>
-    <p>{{ planetInfo.destinations[0].description }}</p>
+    <p>{{ description }}</p>
   </div>
 </template>
 
-<script>
-import { ref } from "vue";
-import data from "@/assets/data.json";
-import { useRouter } from "vue-router";
+<script setup>
+import { defineProps } from "vue";
 
+defineProps({
+  name: String,
+  description: String,
+});
+</script>
+<script>
 export default {
-  setup() {
-    const oject = JSON.parse(JSON.stringify(data));
-    const planetInfo = ref(oject);
-    const router = useRouter();
-    const currentRoute = router.currentRoute;
-    const currentIndex = ref(0);
-    return {
-      planetInfo,
-      currentRoute,
-      currentIndex,
-    };
-  },
+  name: "PlanetInfo",
 };
 </script>
 
@@ -33,11 +26,12 @@ export default {
 
 .planet-info-wrapper {
   text-align: center;
+  padding: 1rem;
 
   @media ($breakpoint-desktop) {
     text-align: left;
     max-width: 28.135rem;
-    padding-bottom: 4rem;
+    padding: 0 0 4rem 0;
   }
 
   .planet-name {
