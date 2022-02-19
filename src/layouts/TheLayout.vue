@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 
@@ -16,6 +16,11 @@ export default defineComponent({
 @use "../assets/globals.scss" as *;
 
 .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   padding: 8rem 1.5rem 0 1.5rem;
   display: flex;
   flex-direction: column;
@@ -27,11 +32,6 @@ export default defineComponent({
   }
 
   @media ($breakpoint-desktop) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
     padding: 10rem 8rem 0 8rem;
     display: flex;
     flex-direction: row;

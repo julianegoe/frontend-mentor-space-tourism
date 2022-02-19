@@ -1,32 +1,37 @@
 <template>
-  <div class="planet-into-wrapper">
-    <h5><span class="list-number">00</span>Pick your destination</h5>
+  <div class="crew-into-wrapper">
+    <h5><span class="list-number">02</span>Meet Your Crew</h5>
     <img
-      class="planet-image"
-      :src="require(`../../assets/destination/image-${name.toLowerCase()}.png`)"
-      alt="planet"
+      class="crew-image"
+      :src="require(`../../assets/crew/image-${calcImageName}.png`)"
+      alt="crew member"
     />
   </div>
 </template>
 <script>
 export default {
-  name: "HeroSection",
+  name: "CrewHeroSection",
 };
 </script>
-
 <script setup>
-import { defineProps } from "vue";
-defineProps({
-  imagePath: String,
+import { defineProps, computed } from "vue";
+
+const props = defineProps({
+  image: String,
   name: String,
+});
+
+const calcImageName = computed(() => {
+  return props.name.replace(" ", "-").toLowerCase();
 });
 </script>
 
 <style lang="scss" scoped>
 @use "../../assets/globals.scss" as *;
 
-.planet-into-wrapper {
+.crew-into-wrapper {
   text-align: center;
+  border-bottom: 1px solid $color-dark-grey;
 
   @media ($breakpoint-desktop) {
     text-align: left;
@@ -42,7 +47,7 @@ defineProps({
     text-align: right;
   }
 
-  .planet-image {
+  .crew-image {
     padding-top: 2rem;
     aspect-ratio: 1;
     width: 15rem;

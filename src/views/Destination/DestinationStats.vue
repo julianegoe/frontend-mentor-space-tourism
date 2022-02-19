@@ -8,7 +8,6 @@
       <div class="stat-heading">Est. Travel Time</div>
       <div class="stat-value">{{ travel }}</div>
     </div>
-
   </div>
 </template>
 <script>
@@ -17,7 +16,7 @@ export default {
 };
 </script>
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps } from "vue";
 
 defineProps({
   distance: String,
@@ -54,7 +53,6 @@ defineProps({
       padding: 0.5rem 0;
       @include subheading-1;
     }
-
   }
 }
 </style>
