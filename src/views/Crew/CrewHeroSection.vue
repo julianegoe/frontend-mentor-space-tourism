@@ -1,5 +1,5 @@
 <template>
-  <div class="crew-into-wrapper">
+  <div class="crew-info-wrapper">
     <h5><span class="list-number">02</span>Meet Your Crew</h5>
     <img
       class="crew-image"
@@ -20,7 +20,6 @@ const props = defineProps({
   image: String,
   name: String,
 });
-
 const calcImageName = computed(() => {
   return props.name.replace(" ", "-").toLowerCase();
 });
@@ -29,14 +28,12 @@ const calcImageName = computed(() => {
 <style lang="scss" scoped>
 @use "../../assets/globals.scss" as *;
 
-.crew-into-wrapper {
+.crew-info-wrapper {
   text-align: center;
-  border-bottom: 1px solid $color-dark-grey;
 
   @media ($breakpoint-desktop) {
     text-align: left;
     max-width: 28.135rem;
-    padding-bottom: 4rem;
   }
 
   .list-number {
@@ -50,11 +47,15 @@ const calcImageName = computed(() => {
   .crew-image {
     padding-top: 2rem;
     aspect-ratio: 1;
-    width: 15rem;
+    width: 20rem;
     object-fit: contain;
+    border-bottom: 1px solid $color-dark-grey;
 
     @media ($breakpoint-tablet) {
-      width: 18.75rem;
+      aspect-ratio: initial;
+      width: 100%;
+      object-fit: cover;
+      border-bottom: none;
     }
 
     @media ($breakpoint-desktop) {

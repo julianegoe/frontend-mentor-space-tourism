@@ -44,15 +44,15 @@
 
 <script>
 import { defineComponent, ref } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "HeaderDesktop",
   setup() {
     const activeItem = ref("");
     const router = useRouter();
-    const route = useRoute();
     const currentRoute = router.currentRoute;
+    const closed = ref(true);
 
     const goHome = () => {
       activeItem.value = "Home";
@@ -64,17 +64,17 @@ export default defineComponent({
 
     const goTo = (destination) => {
       activeItem.value = destination;
-      console.log(router.currentRoute);
       if (currentRoute.value.name !== "Home") {
         router.push({
           name: destination,
-          params: { planet: route.params.planet },
+          params: { planet: router.currentRoute.value.params.planet },
+        });
+      } else {
+        router.push({
+          name: destination,
+          params: { planet: "moon" },
         });
       }
-      router.push({
-        name: destination,
-        params: { planet: "moon" },
-      });
       closed.value = true;
     };
 

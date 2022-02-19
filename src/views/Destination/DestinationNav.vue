@@ -36,7 +36,7 @@ import { useRouter } from "vue-router";
 export default {
   setup() {
     const router = useRouter();
-    const activeItem = ref("");
+    const activeItem = ref(router.currentRoute.value.params.planet);
     const changeDestination = (planet) => {
       activeItem.value = planet;
       router.push({ name: "Destinations", params: { planet: planet } });

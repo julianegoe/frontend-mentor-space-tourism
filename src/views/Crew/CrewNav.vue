@@ -1,30 +1,25 @@
 <template>
-  <div class="destination-nav-wrapper">
+  <div class="crew-nav-wrapper">
     <ul>
       <li
         @click="changeDestination('moon')"
-        :class="{ active: activeItem === 'moon' }"
       >
-        <span class="list-text">Moon</span>
+        <div :class="{ active: activeItem === 'moon' }" class="list-circle"></div>
       </li>
       <li
         @click="changeDestination('mars')"
-        :class="{ active: activeItem === 'mars' }"
       >
-        <span class="list-text">Mars</span>
-        <span></span>
+        <div :class="{ active: activeItem === 'mars' }" class="list-circle"></div>
       </li>
       <li
         @click="changeDestination('europa')"
-        :class="{ active: activeItem === 'europa' }"
       >
-        <span class="list-text">Europa</span>
+        <div :class="{ active: activeItem === 'europa' }" class="list-circle"></div>
       </li>
       <li
         @click="changeDestination('titan')"
-        :class="{ active: activeItem === 'titan' }"
       >
-        <span class="list-text">Titan</span>
+        <div :class="{ active: activeItem === 'titan' }" class="list-circle"></div>
       </li>
     </ul>
   </div>
@@ -36,10 +31,10 @@ import { useRouter } from "vue-router";
 export default {
   setup() {
     const router = useRouter();
-    const activeItem = ref("");
+    const activeItem = ref(router.currentRoute.value.params.planet);
     const changeDestination = (planet) => {
       activeItem.value = planet;
-      router.push({ name: "Destinations", params: { planet: planet } });
+      router.push({ name: "Crew", params: { planet: planet } });
     };
     return {
       activeItem,
@@ -52,18 +47,17 @@ export default {
 <style lang="scss" scoped>
 @use "../../assets/globals.scss" as *;
 
-.destination-nav-wrapper {
+.crew-nav-wrapper {
+  @media ($breakpoint-desktop) {
+    padding: 1rem;
+  }
+
   ul {
-    color: $color-white;
     list-style: none;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 0.875rem;
     padding: 1rem 0;
-    text-align: center;
+    display: flex;
 
     @media ($breakpoint-desktop) {
-      font-size: 1rem;
-      text-align: left;
       padding: 2rem 0;
     }
 
@@ -78,31 +72,31 @@ export default {
     li {
       display: inline;
       cursor: pointer;
-      margin-right: 0.5rem;
+      margin-right: 1rem;
       padding: 0.6rem 0.1rem;
 
       @media ($breakpoint-tablet) {
-        margin-right: 1.6rem;
-        padding: 0.6rem 0.3rem;
       }
 
       @media ($breakpoint-desktop) {
-        margin-right: 1.6rem;
         padding: 1rem 0.3rem;
       }
 
+    }
+    .list-circle {
+      aspect-ratio: 1;
+      width: 0.75rem;
+      border-radius: 50%;
+      background: $color-dark-grey;
+
       &.active {
-        border-bottom: 0.2rem inset $color-white;
+        background-color: $color-white;
       }
 
       &:hover {
-        border-bottom: 0.2rem inset rgba(255, 255, 255, 0.5);
+        background-color: $color-white;
+        transition: background-color 0.25s ease-in-out;
       }
-    }
-    .list-text {
-      text-align: right;
-      letter-spacing: 0.2rem;
-      text-transform: uppercase;
     }
   }
 }
