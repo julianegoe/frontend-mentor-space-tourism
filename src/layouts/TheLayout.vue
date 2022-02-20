@@ -28,12 +28,11 @@ export default defineComponent({
   align-items: center;
 
   @media ($breakpoint-tablet) {
-    padding: 12rem 9rem 0 9rem;
+    padding-top: 9rem;
   }
 
   @media ($breakpoint-desktop) {
     padding: 10rem 8rem 0 8rem;
-    display: flex;
     flex-direction: row;
     align-items: flex-end;
   }

@@ -48,25 +48,15 @@ export default {
 @use "../../assets/globals.scss" as *;
 
 .crew-nav-wrapper {
-  @media ($breakpoint-desktop) {
-    padding: 1rem;
-  }
-
   ul {
     list-style: none;
     padding: 1rem 0;
     display: flex;
+    justify-content: center;
 
     @media ($breakpoint-desktop) {
-      padding: 2rem 0;
-    }
-
-    li:last-child {
-      margin-right: 0;
-    }
-
-    @media ($breakpoint-desktop) {
-      padding: 2rem 0;
+      justify-content: flex-start;
+      padding-bottom: 4rem;
     }
 
     li {
@@ -74,14 +64,6 @@ export default {
       cursor: pointer;
       margin-right: 1rem;
       padding: 0.6rem 0.1rem;
-
-      @media ($breakpoint-tablet) {
-      }
-
-      @media ($breakpoint-desktop) {
-        padding: 1rem 0.3rem;
-      }
-
     }
     .list-circle {
       aspect-ratio: 1;

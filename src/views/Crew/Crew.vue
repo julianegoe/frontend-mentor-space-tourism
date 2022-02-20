@@ -1,14 +1,18 @@
 <template>
   <TheLayout class="crew-layout">
-    <CrewHeroSection
-      class="crew-hero-section"
-      :name="filteredCrewData[0].name"
-      :image="filteredCrewData[0].images.png"
-    />
-    <div class="info-section">
-      <CrewNav class="crew-nav" />
-      <CrewInfo class="crew-info" :name="filteredCrewData[0].name" :role="filteredCrewData[0].role" :bio="filteredCrewData[0].bio" />
-    </div>
+      <CrewHeroSection
+        class="crew-hero-section"
+        :name="filteredCrewData[0].name"
+        :image="filteredCrewData[0].images.png"
+      />
+      <div class="info-section">
+        <h5 class="crew-headline"><span class="list-number">02</span>Meet Your Crew</h5>
+        <CrewNav class="crew-nav" />
+        <CrewInfo class="crew-info"
+                  :name="filteredCrewData[0].name"
+                  :role="filteredCrewData[0].role"
+                  :bio="filteredCrewData[0].bio" />
+      </div>
   </TheLayout>
 </template>
 <script>
@@ -44,33 +48,64 @@ const filteredCrewData = computed(() => {
   background: $color-black url("../../assets/crew/background-crew-mobile.jpg");
   background-size: cover;
 
-  .info-section {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-
-    @media ($breakpoint-desktop) {
-      align-items: flex-start;
-    }
-  }
-
   @media ($breakpoint-tablet) {
     background: $color-black url("../../assets/crew/background-crew-tablet.jpg");
-    .crew-info {
+    .crew-headline {
       order: 1;
+      padding-bottom: 4rem;
+    }
+    .crew-info {
+      order: 2;
+      padding: 0 5rem;
     }
     .crew-nav {
-      order: 2;
+      order: 3;
     }
     .crew-hero-section {
-      order: 3;
+      order: 4;
     }
   }
 
   @media ($breakpoint-desktop) {
     background: $color-black
-      url("../../assets/crew/background-crew-desktop.jpg");
-    padding: 0 10.3rem;
+    url("../../assets/crew/background-crew-desktop.jpg");
+    .crew-headline {
+      padding-bottom: 0;
+    }
+    .crew-info {
+      padding: 0;
+    }
+    .crew-nav {
+      align-self: initial;
+    }
+  }
+
+  .info-section {
+
+    @media ($breakpoint-tablet) {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+
+    h5 {
+      display: none;
+
+      @media ($breakpoint-tablet) {
+        display: initial;
+      }
+    }
+
+    .list-number {
+      color: $color-dark-grey;
+      font-weight: bolder;
+      letter-spacing: 0.2rem;
+      padding-right: 1rem;
+      text-align: right;
+    }
+
   }
 }
 </style>

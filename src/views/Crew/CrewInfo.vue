@@ -4,7 +4,7 @@
       {{ role }}
     </div>
     <div class="crew-name">{{ name }}</div>
-    <p>{{ bio }}</p>
+    <p class="crew-bio">{{ bio }}</p>
   </div>
 </template>
 <script setup>
@@ -30,16 +30,28 @@ export default {
   padding: 1rem;
 
   @media ($breakpoint-desktop) {
+    padding: 0;
     text-align: left;
-    max-width: 28.135rem;
   }
   .crew-name {
     @include subheading-1;
     padding-bottom: 1rem;
+
+    @media ($breakpoint-desktop) {
+      font-size: 3.5rem;
+    }
   }
   .crew-role {
     @include kicker;
     padding-bottom: 0.5rem;
+
+    @media ($breakpoint-desktop) {
+      font-size: 1.75rem;
+    }
+  }
+
+  .crew-bio {
+    max-width: 30rem;
   }
 }
 </style>

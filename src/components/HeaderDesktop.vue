@@ -153,7 +153,7 @@ export default defineComponent({
           border-bottom: 0.2rem inset rgba(255, 255, 255, 0.5);
         }
       }
-      @media ($breakpoint-desktop) {
+      @media ($breakpoint-tablet) {
         .list-number {
           font-weight: bolder;
           letter-spacing: 0.2rem;

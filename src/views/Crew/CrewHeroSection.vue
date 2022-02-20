@@ -1,5 +1,5 @@
 <template>
-  <div class="crew-info-wrapper">
+  <div class="crew-hero-wrapper">
     <h5><span class="list-number">02</span>Meet Your Crew</h5>
     <img
       class="crew-image"
@@ -28,12 +28,13 @@ const calcImageName = computed(() => {
 <style lang="scss" scoped>
 @use "../../assets/globals.scss" as *;
 
-.crew-info-wrapper {
-  text-align: center;
+.crew-hero-wrapper {
 
-  @media ($breakpoint-desktop) {
-    text-align: left;
-    max-width: 28.135rem;
+  h5 {
+    text-align: center;
+    @media ($breakpoint-tablet) {
+      display: none;
+    }
   }
 
   .list-number {
@@ -45,21 +46,20 @@ const calcImageName = computed(() => {
   }
 
   .crew-image {
-    padding-top: 2rem;
-    aspect-ratio: 1;
-    width: 20rem;
-    object-fit: contain;
+    padding: 1rem 3rem 0 3rem;
+    height: 15rem;
+    width: auto;
+    object-fit: cover;
     border-bottom: 1px solid $color-dark-grey;
 
     @media ($breakpoint-tablet) {
-      aspect-ratio: initial;
-      width: 100%;
-      object-fit: cover;
       border-bottom: none;
+      height: 35rem;
+      width: auto;
     }
 
     @media ($breakpoint-desktop) {
-      width: 25rem;
+      padding: 1rem 0 0 3rem;
     }
   }
 }

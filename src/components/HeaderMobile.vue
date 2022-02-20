@@ -49,7 +49,7 @@
 
 <script>
 import { defineComponent, ref } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "HeaderMobile",
@@ -57,7 +57,6 @@ export default defineComponent({
     const closed = ref(true);
     const activeItem = ref("");
     const router = useRouter();
-    const route = useRoute();
     const currentRoute = router.currentRoute;
 
     const goHome = () => {
@@ -70,17 +69,17 @@ export default defineComponent({
 
     const goTo = (destination) => {
       activeItem.value = destination;
-      console.log(router.currentRoute);
       if (currentRoute.value.name !== "Home") {
         router.push({
           name: destination,
-          params: { planet: route.params.planet },
+          params: { planet: router.currentRoute.value.params.planet },
+        });
+      } else {
+        router.push({
+          name: destination,
+          params: { planet: "moon" },
         });
       }
-      router.push({
-        name: destination,
-        params: { planet: "moon" },
-      });
       closed.value = true;
     };
 
@@ -106,7 +105,7 @@ export default defineComponent({
   top: 0;
   right: 0;
   bottom: 0;
-  width: 50%;
+  width: 60%;
   padding: 2rem;
   backdrop-filter: blur(50px) brightness(1.1) contrast(0.9);
   transition: transform 0.15s ease-in;
