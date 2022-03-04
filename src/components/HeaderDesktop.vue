@@ -14,28 +14,39 @@
     <nav class="nav">
       <div class="design-line"></div>
       <ul>
-        <li @click="goHome" :class="{ active: activeItem === 'Home' }">
-          <span class="list-number">00</span>
-          <span class="list-text">Home</span>
+        <li>
+          <router-link :to="{ name: 'Home' }" active-link="active">
+            <span class="list-number">00</span>
+            <span class="list-text">Home</span>
+          </router-link>
         </li>
-        <li
-          @click="goTo('Destinations')"
-          :class="{ active: activeItem === 'Destinations' }"
-        >
-          <span class="list-number">01</span
-          ><span class="list-text">Destinations</span>
-          <span></span>
+        <li>
+          <router-link
+            :to="{ name: 'Destinations', params: { name: 'Moon' } }"
+            active-link="active"
+          >
+            <span class="list-number">01</span
+            ><span class="list-text">Destinations</span>
+            <span></span>
+          </router-link>
         </li>
-        <li @click="goTo('Crew')" :class="{ active: activeItem === 'Crew' }">
-          <span class="list-number">02</span>
-          <span class="list-text">Crew</span>
+        <li>
+          <router-link
+            :to="{ name: 'Crew', params: { name: 'Douglas Hurley' } }"
+            active-link="active"
+          >
+            <span class="list-number">02</span>
+            <span class="list-text">Crew</span>
+          </router-link>
         </li>
-        <li
-          @click="goTo('Technology')"
-          :class="{ active: activeItem === 'Technology' }"
-        >
-          <span class="list-number">03</span
-          ><span class="list-text">Technology</span>
+        <li>
+          <router-link
+            :to="{ name: 'Technology', params: { name: 'Launch vehicle' } }"
+            active-link="active"
+          >
+            <span class="list-number">03</span
+            ><span class="list-text">Technology</span>
+          </router-link>
         </li>
       </ul>
     </nav>
@@ -43,47 +54,10 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
-import { useRouter } from "vue-router";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "HeaderDesktop",
-  setup() {
-    const activeItem = ref("");
-    const router = useRouter();
-    const currentRoute = router.currentRoute;
-    const closed = ref(true);
-
-    const goHome = () => {
-      activeItem.value = "Home";
-      router.push({
-        name: "Home",
-      });
-      closed.value = true;
-    };
-
-    const goTo = (destination) => {
-      activeItem.value = destination;
-      if (currentRoute.value.name !== "Home") {
-        router.push({
-          name: destination,
-          params: { planet: router.currentRoute.value.params.planet },
-        });
-      } else {
-        router.push({
-          name: destination,
-          params: { planet: "moon" },
-        });
-      }
-      closed.value = true;
-    };
-
-    return {
-      activeItem,
-      goTo,
-      goHome,
-    };
-  },
 });
 </script>
 
@@ -109,6 +83,18 @@ export default defineComponent({
     color: white;
     z-index: 1;
     margin-top: 2rem;
+
+    li > a {
+      color: inherit;
+      text-decoration: none;
+      padding: 2rem 0.4rem 1.8rem 0.4rem;
+      &.router-link-active {
+        border-bottom: 0.2rem inset $color-white;
+      }
+      &:hover {
+        border-bottom: 0.2rem inset rgba(255, 255, 255, 0.5);
+      }
+    }
 
     @media ($breakpoint-desktop) {
       .design-line {
@@ -142,16 +128,7 @@ export default defineComponent({
       li {
         display: inline;
         cursor: pointer;
-        padding: 2rem 0.4rem 1.8rem 0.4rem;
         margin-right: 1.6rem;
-
-        &.active {
-          border-bottom: 0.2rem inset $color-white;
-        }
-
-        &:hover {
-          border-bottom: 0.2rem inset rgba(255, 255, 255, 0.5);
-        }
       }
       @media ($breakpoint-tablet) {
         .list-number {

@@ -8,7 +8,7 @@ const routes = [
     component: Home,
   },
   {
-    path: "/destinations/:planet",
+    path: "/destinations/:name",
     name: "Destinations",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -19,16 +19,18 @@ const routes = [
       ),
   },
   {
-    path: "/technology/:planet",
+    path: "/technology/:name",
     name: "Technology",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Technology.vue"),
+      import(
+        /* webpackChunkName: "about" */ "../views/Technology/Technology.vue"
+      ),
   },
   {
-    path: "/crew/:planet",
+    path: "/crew/:name",
     name: "Crew",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

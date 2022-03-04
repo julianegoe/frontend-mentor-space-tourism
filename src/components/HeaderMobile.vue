@@ -28,73 +28,56 @@
       </svg>
     </div>
     <ul>
-      <li @click="goHome">
-        <span class="list-number">00</span>
-        <span class="list-text">Home</span>
+      <li>
+        <router-link :to="{ name: 'Home' }">
+          <span class="list-number">00</span>
+          <span class="list-text">Home</span>
+        </router-link>
       </li>
-      <li @click="goTo('Destinations')">
-        <span class="list-number">01</span
-        ><span class="list-text">Destinations</span>
+      <li>
+        <router-link :to="{ name: 'Destinations', params: { name: 'Moon' } }">
+          <span class="list-number">01</span
+          ><span class="list-text">Destinations</span>
+        </router-link>
       </li>
-      <li @click="goTo('Crew')">
-        <span class="list-number">02</span><span class="list-text">Crew</span>
+      <li>
+        <router-link :to="{ name: 'Crew', params: { name: 'Douglas Hurley' } }">
+          <span class="list-number">02</span><span class="list-text">Crew</span>
+        </router-link>
       </li>
-      <li @click="goTo('Technology')">
-        <span class="list-number">03</span
-        ><span class="list-text">Technology</span>
+      <li>
+        <router-link
+          :to="{ name: 'Technology', params: { name: 'Launch vehicle' } }"
+        >
+          <span class="list-number">03</span
+          ><span class="list-text">Technology</span>
+        </router-link>
       </li>
     </ul>
   </div>
 </template>
-
 <script>
-import { defineComponent, ref } from "vue";
+export default {
+  name: "HeaderMobile",
+};
+</script>
+<script setup>
+import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 
-export default defineComponent({
-  name: "HeaderMobile",
-  setup() {
-    const closed = ref(true);
-    const activeItem = ref("");
-    const router = useRouter();
-    const currentRoute = router.currentRoute;
+const router = useRouter();
+const closed = ref(true);
 
-    const goHome = () => {
-      activeItem.value = "Home";
-      router.push({
-        name: "Home",
-      });
-      closed.value = true;
-    };
+const toggleMenu = () => {
+  closed.value = !closed.value;
+};
 
-    const goTo = (destination) => {
-      activeItem.value = destination;
-      if (currentRoute.value.name !== "Home") {
-        router.push({
-          name: destination,
-          params: { planet: router.currentRoute.value.params.planet },
-        });
-      } else {
-        router.push({
-          name: destination,
-          params: { planet: "moon" },
-        });
-      }
-      closed.value = true;
-    };
-
-    const toggleMenu = () => {
-      closed.value = !closed.value;
-    };
-    return {
-      closed,
-      toggleMenu,
-      activeItem,
-      goTo,
-      goHome,
-    };
-  },
-});
+watch(
+  () => router.currentRoute.value.params,
+  () => {
+    closed.value = true;
+  }
+);
 </script>
 
 <style lang="scss" scoped>
@@ -134,6 +117,11 @@ export default defineComponent({
     li {
       margin-top: 4rem;
       cursor: pointer;
+
+      > a {
+        color: inherit;
+        text-decoration: none;
+      }
     }
 
     .list-number {

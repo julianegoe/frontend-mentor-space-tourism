@@ -1,21 +1,28 @@
 <template>
-  <div class="crew-hero-wrapper">
-    <h5><span class="list-number">02</span>Meet Your Crew</h5>
+  <div class="tech-hero-wrapper">
+    <h5><span class="list-number">03</span>Space Launch 101</h5>
     <img
-      class="crew-image"
-      :src="require(`../../assets/crew/image-${calcImageName}.png`)"
+      class="tech-image"
+      :src="
+        require(`../../assets/technology/image-${calcImageName}-${imageName}.jpg`)
+      "
       alt="crew member"
     />
   </div>
 </template>
 <script>
 export default {
-  name: "CrewHeroSection",
+  name: "TechnologyHeroSection",
 };
 </script>
 <script setup>
 import { defineProps, computed } from "vue";
+import { useWindowSize } from "vue-window-size";
 
+const { width } = useWindowSize();
+const imageName = computed(() =>
+  width.value <= "768" ? "landscape" : "portrait"
+);
 const props = defineProps({
   image: String,
   name: String,
@@ -28,9 +35,14 @@ const calcImageName = computed(() => {
 <style lang="scss" scoped>
 @use "../../assets/globals.scss" as *;
 
-.crew-hero-wrapper {
+.tech-hero-wrapper {
   h5 {
     text-align: center;
+    @media ($breakpoint-tablet) {
+      text-align: left;
+      padding-left: 2rem;
+    }
+
     @media ($breakpoint-tablet) {
       display: none;
     }
@@ -44,17 +56,18 @@ const calcImageName = computed(() => {
     text-align: right;
   }
 
-  .crew-image {
-    padding: 1rem 3rem 0 3rem;
-    height: 15rem;
-    width: auto;
+  .tech-image {
+    height: auto;
+    width: 100%;
     object-fit: cover;
+    padding-top: 2rem;
     border-bottom: 1px solid $color-dark-grey;
 
     @media ($breakpoint-tablet) {
+      padding-top: 4rem;
       border-bottom: none;
-      height: 35rem;
-      width: auto;
+      height: auto;
+      width: 100%;
     }
 
     @media ($breakpoint-desktop) {

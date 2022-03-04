@@ -1,18 +1,22 @@
 <template>
   <TheLayout class="crew-layout">
-      <CrewHeroSection
-        class="crew-hero-section"
+    <CrewHeroSection
+      class="crew-hero-section"
+      :name="filteredCrewData[0].name"
+      :image="filteredCrewData[0].images.png"
+    />
+    <div class="info-section">
+      <h5 class="crew-headline">
+        <span class="list-number">02</span>Meet Your Crew
+      </h5>
+      <CrewNav :crew-data="allCrewData.crew" class="crew-nav" />
+      <CrewInfo
+        class="crew-info"
         :name="filteredCrewData[0].name"
-        :image="filteredCrewData[0].images.png"
+        :role="filteredCrewData[0].role"
+        :bio="filteredCrewData[0].bio"
       />
-      <div class="info-section">
-        <h5 class="crew-headline"><span class="list-number">02</span>Meet Your Crew</h5>
-        <CrewNav class="crew-nav" />
-        <CrewInfo class="crew-info"
-                  :name="filteredCrewData[0].name"
-                  :role="filteredCrewData[0].role"
-                  :bio="filteredCrewData[0].bio" />
-      </div>
+    </div>
   </TheLayout>
 </template>
 <script>
@@ -34,9 +38,9 @@ const router = useRouter();
 const currentRoute = router.currentRoute;
 
 const filteredCrewData = computed(() => {
-  console.log(currentRoute.value.params.planet);
+  console.log(currentRoute.value.params.name);
   return allCrewData.value.crew.filter((crew) => {
-    return currentRoute.value.params.planet === crew.destination.toLowerCase();
+    return currentRoute.value.params.name === crew.name;
   });
 });
 </script>
@@ -68,7 +72,7 @@ const filteredCrewData = computed(() => {
 
   @media ($breakpoint-desktop) {
     background: $color-black
-    url("../../assets/crew/background-crew-desktop.jpg");
+      url("../../assets/crew/background-crew-desktop.jpg");
     .crew-headline {
       padding-bottom: 0;
     }
@@ -81,7 +85,6 @@ const filteredCrewData = computed(() => {
   }
 
   .info-section {
-
     @media ($breakpoint-tablet) {
       height: 100%;
       display: flex;
@@ -105,7 +108,6 @@ const filteredCrewData = computed(() => {
       padding-right: 1rem;
       text-align: right;
     }
-
   }
 }
 </style>

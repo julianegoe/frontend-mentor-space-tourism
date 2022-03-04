@@ -1,51 +1,31 @@
 <template>
   <div class="destination-nav-wrapper">
-    <ul>
-      <li
-        @click="changeDestination('moon')"
-        :class="{ active: activeItem === 'moon' }"
-      >
-        <span class="list-text">Moon</span>
-      </li>
-      <li
-        @click="changeDestination('mars')"
-        :class="{ active: activeItem === 'mars' }"
-      >
-        <span class="list-text">Mars</span>
-        <span></span>
-      </li>
-      <li
-        @click="changeDestination('europa')"
-        :class="{ active: activeItem === 'europa' }"
-      >
-        <span class="list-text">Europa</span>
-      </li>
-      <li
-        @click="changeDestination('titan')"
-        :class="{ active: activeItem === 'titan' }"
-      >
-        <span class="list-text">Titan</span>
-      </li>
+    <ul class="link-wrapper">
+      <template v-for="destination of destinationData" :key="destination.name">
+        <li>
+          <router-link
+            class="router-link-active"
+            :to="{ name: 'Destinations', params: { name: destination.name } }"
+            active-link="active"
+          >
+            <span class="list-text">{{ destination.name.toUpperCase() }}</span>
+          </router-link>
+        </li>
+      </template>
     </ul>
   </div>
 </template>
 
+<script setup>
+import { defineProps } from "vue";
+
+defineProps({
+  destinationData: Array,
+});
+</script>
 <script>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
 export default {
-  setup() {
-    const router = useRouter();
-    const activeItem = ref(router.currentRoute.value.params.planet);
-    const changeDestination = (planet) => {
-      activeItem.value = planet;
-      router.push({ name: "Destinations", params: { planet: planet } });
-    };
-    return {
-      activeItem,
-      changeDestination,
-    };
-  },
+  name: "DestinationNav",
 };
 </script>
 
@@ -53,7 +33,7 @@ export default {
 @use "../../assets/globals.scss" as *;
 
 .destination-nav-wrapper {
-  ul {
+  .link-wrapper {
     color: $color-white;
     list-style: none;
     font-family: "Barlow Condensed", sans-serif;
@@ -67,19 +47,24 @@ export default {
       padding: 2rem 0;
     }
 
-    li:last-child {
-      margin-right: 0;
-    }
-
     @media ($breakpoint-desktop) {
       padding: 2rem 0;
     }
 
     li {
       display: inline;
-      cursor: pointer;
-      margin-right: 0.5rem;
+    }
+
+    li > a {
+      color: inherit;
+      text-decoration: none;
       padding: 0.6rem 0.1rem;
+      &.router-link-exact-active {
+        border-bottom: 0.2rem inset $color-white;
+      }
+      &:hover {
+        border-bottom: 0.2rem inset rgba(255, 255, 255, 0.5);
+      }
 
       @media ($breakpoint-tablet) {
         margin-right: 1.6rem;
@@ -90,19 +75,18 @@ export default {
         margin-right: 1.6rem;
         padding: 1rem 0.3rem;
       }
-
-      &.active {
-        border-bottom: 0.2rem inset $color-white;
-      }
-
-      &:hover {
-        border-bottom: 0.2rem inset rgba(255, 255, 255, 0.5);
-      }
     }
-    .list-text {
-      text-align: right;
-      letter-spacing: 0.2rem;
-      text-transform: uppercase;
+    .router-link-active {
+      text-decoration: none;
+      color: inherit;
+      margin-right: 0.5rem;
+      padding: 0.6rem 0.1rem;
+
+      .list-text {
+        text-align: right;
+        letter-spacing: 0.2rem;
+        text-transform: uppercase;
+      }
     }
   }
 }

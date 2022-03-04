@@ -1,54 +1,33 @@
 <template>
   <div class="crew-nav-wrapper">
-    <ul>
-      <li
-        @click="changeDestination('moon')"
-      >
-        <div :class="{ active: activeItem === 'moon' }" class="list-circle"></div>
-      </li>
-      <li
-        @click="changeDestination('mars')"
-      >
-        <div :class="{ active: activeItem === 'mars' }" class="list-circle"></div>
-      </li>
-      <li
-        @click="changeDestination('europa')"
-      >
-        <div :class="{ active: activeItem === 'europa' }" class="list-circle"></div>
-      </li>
-      <li
-        @click="changeDestination('titan')"
-      >
-        <div :class="{ active: activeItem === 'titan' }" class="list-circle"></div>
-      </li>
-    </ul>
+    <div class="link-wrapper">
+      <template v-for="crewMember in crewData" :key="crewMember.name">
+        <router-link
+          class="list-circle"
+          :to="{ name: 'Crew', params: { name: crewMember.name } }"
+        />
+      </template>
+    </div>
   </div>
 </template>
 
+<script setup>
+import { defineProps } from "vue";
+
+defineProps({
+  crewData: Array,
+});
+</script>
 <script>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
 export default {
-  setup() {
-    const router = useRouter();
-    const activeItem = ref(router.currentRoute.value.params.planet);
-    const changeDestination = (planet) => {
-      activeItem.value = planet;
-      router.push({ name: "Crew", params: { planet: planet } });
-    };
-    return {
-      activeItem,
-      changeDestination,
-    };
-  },
+  name: "CrewNav",
 };
 </script>
-
 <style lang="scss" scoped>
 @use "../../assets/globals.scss" as *;
 
 .crew-nav-wrapper {
-  ul {
+  .link-wrapper {
     list-style: none;
     padding: 1rem 0;
     display: flex;
@@ -58,20 +37,14 @@ export default {
       justify-content: flex-start;
       padding-bottom: 4rem;
     }
-
-    li {
-      display: inline;
-      cursor: pointer;
-      margin-right: 1rem;
-      padding: 0.6rem 0.1rem;
-    }
     .list-circle {
       aspect-ratio: 1;
-      width: 0.75rem;
+      width: 1rem;
       border-radius: 50%;
       background: $color-dark-grey;
+      margin-right: 1rem;
 
-      &.active {
+      &.router-link-exact-active {
         background-color: $color-white;
       }
 

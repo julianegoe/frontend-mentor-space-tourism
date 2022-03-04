@@ -2,7 +2,7 @@
   <TheLayout class="destination-layout">
     <DestinationHeroSection :name="filteredPlanetData[0].name" />
     <div class="info-section">
-      <DestinationNav/>
+      <DestinationNav :destination-data="allPlanetData.destinations" />
       <DestinationContent :planet-data="filteredPlanetData" />
     </div>
   </TheLayout>
@@ -27,7 +27,7 @@ const currentRoute = router.currentRoute;
 
 const filteredPlanetData = computed(() => {
   return allPlanetData.value.destinations.filter((planet) => {
-    return currentRoute.value.params.planet === planet.name.toLowerCase();
+    return currentRoute.value.params.name === planet.name;
   });
 });
 </script>
