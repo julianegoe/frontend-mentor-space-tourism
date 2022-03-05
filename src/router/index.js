@@ -3,7 +3,7 @@ import Home from "../views/Home/Home.vue";
 
 const routes = [
   {
-    path: "/frontend-mentor-space-tourism/",
+    path: "/",
     name: "Home",
     component: Home,
   },
