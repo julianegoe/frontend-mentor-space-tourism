@@ -4,7 +4,7 @@
     <img
       class="tech-image"
       :src="
-        require(`../../assets/technology/image-${calcImageName}-${imageName}.jpg`)
+        require(`../../assets/technology/image-${name.replace(' ', '-').toLowerCase()}-${imageName}.jpg`)
       "
       alt="crew member"
     />
@@ -23,12 +23,9 @@ const { width } = useWindowSize();
 const imageName = computed(() =>
   width.value <= "768" ? "landscape" : "portrait"
 );
-const props = defineProps({
+defineProps({
   image: String,
   name: String,
-});
-const calcImageName = computed(() => {
-  return props.name.replace(" ", "-").toLowerCase();
 });
 </script>
 
