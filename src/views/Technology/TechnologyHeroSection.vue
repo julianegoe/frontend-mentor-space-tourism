@@ -4,7 +4,7 @@
     <img
       class="tech-image"
       :src="
-        require(`../../assets/technology/image-${name.replace(' ', '-').toLowerCase()}-${imageName}.jpg`)
+        require(`../../assets/technology/image-${name.replace(' ', '-').toLowerCase()}-${width.value <= '768' ? 'landscape' : 'portrait'}.jpg`)
       "
       alt="crew member"
     />
@@ -16,13 +16,10 @@ export default {
 };
 </script>
 <script setup>
-import { defineProps, computed } from "vue";
+import { defineProps } from "vue";
 import { useWindowSize } from "vue-window-size";
 
 const { width } = useWindowSize();
-const imageName = computed(() =>
-  width.value <= "768" ? "landscape" : "portrait"
-);
 defineProps({
   image: String,
   name: String,
