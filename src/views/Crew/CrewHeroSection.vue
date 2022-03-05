@@ -3,7 +3,7 @@
     <h5><span class="list-number">02</span>Meet Your Crew</h5>
     <img
       class="crew-image"
-      :src="require(`../../../public/crew/image-mark-shuttleworth.png`)"
+      :src="require(`../../../public/crew/image-${name.replace(' ', '-').toLowerCase()}.png`)"
       alt="crew member"
     />
   </div>
@@ -14,14 +14,11 @@ export default {
 };
 </script>
 <script setup>
-import { defineProps, computed } from "vue";
+import { defineProps } from "vue";
 
-const props = defineProps({
+defineProps({
   image: String,
   name: String,
-});
-const calcImageName = computed(() => {
-  return props.name.replace(" ", "-").toLowerCase();
 });
 </script>
 
