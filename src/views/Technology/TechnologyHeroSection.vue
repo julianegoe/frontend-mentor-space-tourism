@@ -1,10 +1,17 @@
 <template>
   <div class="tech-hero-wrapper">
     <h5><span class="list-number">03</span>Space Launch 101</h5>
-    <img
+    <img v-if="width <= '768'"
       class="tech-image"
       :src="
-        require(`../../assets/technology/image-${name.replace(' ', '-').toLowerCase()}-${width.value <= '768' ? 'landscape' : 'portrait'}.jpg`)
+        require(`../../assets/technology/image-${name.replace(' ', '-').toLowerCase()}-landscape.jpg`)
+      "
+      alt="crew member"
+    />
+    <img v-if="width > '768'"
+      class="tech-image"
+      :src="
+        require(`../../assets/technology/image-${name.replace(' ', '-').toLowerCase()}-portrait.jpg`)
       "
       alt="crew member"
     />
