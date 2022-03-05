@@ -3,7 +3,7 @@
     <h5><span class="list-number">02</span>Meet Your Crew</h5>
     <img
       class="crew-image"
-      :src="require(`../../assets/crew/image-${calcImageName}.png`)"
+      :src="require(`../../../public/crew/image-${calcImageName}.png`)"
       alt="crew member"
     />
   </div>

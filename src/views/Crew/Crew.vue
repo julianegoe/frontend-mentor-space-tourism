@@ -49,11 +49,11 @@ const filteredCrewData = computed(() => {
 @use "../../assets/globals" as *;
 
 .crew-layout {
-  background: $color-black url("../../assets/crew/background-crew-mobile.jpg");
+  background: $color-black url("../../../public/crew/background-crew-mobile.jpg");
   background-size: cover;
 
   @media ($breakpoint-tablet) {
-    background: $color-black url("../../assets/crew/background-crew-tablet.jpg");
+    background: $color-black url("../../../public/crew/background-crew-tablet.jpg");
     .crew-headline {
       order: 1;
       padding-bottom: 4rem;
@@ -72,7 +72,7 @@ const filteredCrewData = computed(() => {
 
   @media ($breakpoint-desktop) {
     background: $color-black
-      url("../../assets/crew/background-crew-desktop.jpg");
+      url("../../../public/crew/background-crew-desktop.jpg");
     .crew-headline {
       padding-bottom: 0;
     }
