@@ -2,8 +2,8 @@
   <TheLayout class="crew-layout">
     <CrewHeroSection
       class="crew-hero-section"
-      :name="filteredCrewData[0].name"
-      :image="filteredCrewData[0].images.png"
+      :name="filteredCrewData.name"
+      :image="filteredCrewData.images.png"
     />
     <div class="info-section">
       <h5 class="crew-headline">
@@ -12,9 +12,9 @@
       <CrewNav :crew-data="allCrewData.crew" class="crew-nav" />
       <CrewInfo
         class="crew-info"
-        :name="filteredCrewData[0].name"
-        :role="filteredCrewData[0].role"
-        :bio="filteredCrewData[0].bio"
+        :name="filteredCrewData.name"
+        :role="filteredCrewData.role"
+        :bio="filteredCrewData.bio"
       />
     </div>
   </TheLayout>
@@ -39,7 +39,7 @@ const currentRoute = router.currentRoute;
 
 const filteredCrewData = computed(() => {
   console.log(currentRoute.value.params.name);
-  return allCrewData.value.crew.filter((crew) => {
+  return allCrewData.value.crew.find((crew) => {
     return currentRoute.value.params.name === crew.name;
   });
 });
